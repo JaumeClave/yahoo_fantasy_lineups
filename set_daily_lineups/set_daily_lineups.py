@@ -22,8 +22,9 @@ REST_OF_WEEK_START_BUTTON_XPATH_TEXT = "//*[(text()='Start')]"
 # Functions
 def open_yahoo_my_team():
     """
-
-    :return:
+    Function opens the Yahoo "My Team" web page. ChromeDriver options are loaded which facilitate
+    the Yahoo login. The driver is returned.
+    :return driver: ChromeDriver used to open Yahoo session
     """
     # Load Profile
     options = webdriver.ChromeOptions()
@@ -43,9 +44,10 @@ def open_yahoo_my_team():
 
 def click_button_yahoo_my_team(driver, button_xpath_text):
     """
-
-    :param button_xpath_text:
-    :return:
+    Function finds a webelement by XPATH and automatically clicks it.
+    :param driver: ChromeDriver used to open Yahoo session
+    :param button_xpath_text: XPATH of desired element
+    :return driver: ChromeDriver used to open Yahoo session
     """
     webelement_button = driver.find_element_by_xpath(button_xpath_text)
     webelement_button.click()
@@ -55,6 +57,11 @@ def click_button_yahoo_my_team(driver, button_xpath_text):
 
 
 def set_daily_yahoo_lineups():
+    """
+    Function ties the entire process. It first logins to Yahoo via a ChromeDriver. It then finds
+    the buttons required to be clicked to activate starting players.
+    :return: None
+    """
     driver = open_yahoo_my_team()
     click_button_yahoo_my_team(driver, START_ACTIVE_PLAYERS_BUTTON_XPATH_TEXT)
     click_button_yahoo_my_team(driver, REST_OF_WEEK_START_BUTTON_XPATH_TEXT)
